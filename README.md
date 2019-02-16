@@ -1,6 +1,94 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# AssessMe
 
-## Available Scripts
+## Table of Contents
+1. [Run the App](#run-the-app)
+2. [Test the App](#test-the-app)
+3. [Folder Structure](#folder-structure)
+4. [Docker](#docker) *Work in progress*
+5. [Scripts](#scripts) *Work in progress*
+
+## Run the App
+The app use Docker to run the React project. The Docker image uses [Node Alpine](https://hub.docker.com/_/node/) to abstract away the need to install [Node](https://nodejs.org/en/).
+
+**To start:**
+``docker-compose up``
+
+**To stop:**
+``docker-compose down``
+
+**Windows users** should use **192.168.99.100** for their **localhost**.
+
+Please follow the instructions to [setup docker](#docker), in case you don't have it installed.
+
+*Note*
+
+I need to add the production build for Docker.
+
+## Test the App
+
+To test the app bash into the docker container:
+
+``docker-compose exec web sh``
+
+Once in the container's terminal:
+
+``npm run test``
+
+## Folder Structure
+
+The folder structure uses the [Fractals folder system](https://hackernoon.com/fractal-a-react-app-structure-for-infinite-scale-4dab943092af).
+
+### Summary:
+
+- **build** is where all the built files go, you never touch this except when you need to deploy.
+- **public** is where your index.html file and <script src> assets go. (They automatically get copied to build while using create-react-app)
+src is where you code.
+- **src.pages** are the root level components, ones which are directly mounted on level 1 routes. (Ex. if you have a route called /login that mounts a Login component, then Login.js will be present in pages directory).
+- **src.modules** handles your state (actions + reducers using ducks file structure).
+- **src.components** have shared components, like Button, Input etc.
+- **src.utils** have utilities like your API wrapper, date utils, string utils etc.
+- **config** is where you store your environment variables like API endpoints. Don’t commit this to git.
+- **store** initializes the redux store.
+- **index** registers the routes and renders the app.
+
+## Docker
+
+To start:
+
+``docker-compose up``
+
+To stop:
+
+``docker-compose down``
+
+### Disclaimer!
+
+A major difference between Docker for Mac vs. Docker for Windows is that you **will not be able to use localhost anymore**! See [Note](#note)
+
+### Mac Users
+
+Mac users should visit [docker](https://www.docker.com/get-started) and download the **Docker CE**.
+Click on your appropriate OS, next you will be taken to the [store](https://hub.docker.com/editions/community/docker-ce-desktop-windows). Click on the **Please Login to Download** button and sign up for a docker account.
+
+### Windows Users
+
+If you are a Windows Home user, you will not be able install the Docker for Windows Desktop edition, as it requires Hyper-V virtualization. This is supported only by Windows Professional and Enterprise editions.
+
+Windows Home users will need to install Docker Toolbox which uses VirtualBox instead. Please follow the instructions below for installation:
+
+[Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/)
+
+You may also need to enable virtualization in your computer's BIOS settings. This will be different for each manufacturer, please refer to their documentation on which keys to use to access these settings on reboot.
+
+#### Note
+
+As mentioned before to access **localhost** on Windows use **192.168.99.100**
+
+You'll also notice a ``.env`` file inside the root directory, this is to enable **Hot Module Reloading** for Windows users!
+
+## Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
@@ -66,3 +154,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Troubleshooting
+
+### Bash for Windows
+
+Enable Developer Mode on a Windows machine and to get Bash enabled: [Read](https://stackoverflow.com/questions/36352627/how-to-enable-bash-in-windows-10-developer-preview/45010794#45010794)
