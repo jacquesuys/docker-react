@@ -1,0 +1,14 @@
+.stepper-container {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  transform: translateY(-50%);
+  top: 50%;
+  width: 100%;
+}
+
+.stepper-container > * {
+  background-color: white;
+  padding: 5px;
+  cursor: pointer;
+}
