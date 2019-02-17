@@ -10,19 +10,30 @@
 ## Run the App
 The app use Docker to run the React project. The Docker image uses [Node Alpine](https://hub.docker.com/_/node/) to abstract away the need to install [Node](https://nodejs.org/en/).
 
+**After new dependencies** or **first time** run: 
+``docker-compose up --build``
+
 **To start:**
 ``docker-compose up``
 
 **To stop:**
-``docker-compose down``
+``cmd(ctrl) + c`` or ``docker-compose down``
 
 **Windows users** should use **192.168.99.100** for their **localhost**.
 
 Please follow the instructions to [setup docker](#docker), in case you don't have it installed.
 
+
+**Burn everything with Hellfire:**
+```
+docker stop `docker ps -qa`
+docker rm -f `docker ps -qa`
+docker rmi `docker images -q`
+```
 *Note*
 
 I need to add the production build for Docker.
+
 
 ## Test the App
 
